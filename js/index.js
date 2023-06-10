@@ -62,7 +62,7 @@ btnGroups.addEventListener("click", function (e) {
     checkSelected(e)
 })
 
-// 一般查詢渲染
+// 資料查詢渲染
 let renderList = function (dataList) {
     str = "";
     if (dataList.length === 0) {
@@ -85,29 +85,6 @@ let renderList = function (dataList) {
     showList.innerHTML = str;
 }
 
-// 排序後結果渲染
-let renderSortList = function (list) {
-    str = "";
-    if (list.length === 0) {
-        str = `<tr>
-                    <td colspan="7" class="text-center p-3">查詢不到當日的交易資訊QQ</td>
-                </tr>`;
-    } else {
-        list.forEach(function (item) {
-            str += `<tr>
-                        <td width="15%" class="text-left p-3">${item["作物名稱"]}</td>
-                        <td width="15%" class="text-left p-3">${item["市場名稱"]}</td>
-                        <td width="14%" class="text-left p-3">${item["上價"]}</td>
-                        <td width="14%" class="text-left p-3">${item["中價"]}</td>
-                        <td width="14%" class="text-left p-3">${item["下價"]}</td>
-                        <td width="14%" class="text-left p-3">${item["平均價"]}</td>
-                        <td width="14%" class="text-left p-3">${item["交易量"]}</td>
-                    </tr>`
-        })
-    }
-    showList.innerHTML = str;
-}
-
 // 網頁修改排序事件
 jsSelect.addEventListener("change", function (e) {
     if (resultData.length === 0) {
@@ -120,7 +97,7 @@ jsSelect.addEventListener("change", function (e) {
             })
         }
     })
-    renderSortList(resultData);
+    renderList(resultData);
 })
 
 // 手機頁面修改排序事件
@@ -135,7 +112,7 @@ jsMoblieSelect.addEventListener("change", function (e) {
             })
         }
     })
-    renderSortList(resultData);
+    renderList(resultData);
 })
 
 // 調整由大到小或由小到大排序
@@ -153,7 +130,7 @@ upDownSort.addEventListener("click", function (e) {
             return b[getUpDown] - a[getUpDown]
         })
     }
-    renderSortList(resultData);
+    renderList(resultData);
 })
 
 // 網頁載入完成時直接顯示全部內容
